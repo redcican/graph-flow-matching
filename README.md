@@ -130,17 +130,6 @@ Key hyperparameters in `GAFMConfig`:
 | `stage2_fraction` | 0.3 | Training budget for +feature GNN |
 | `stage3_fraction` | 0.5 | Training budget for full model |
 
-## Citation
-
-```bibtex
-@article{gafm2025,
-  title={Graph-Based Neural Network Augmented Flow Matching for Mixed-Type Tabular Data Generation},
-  author={},
-  journal={Pattern Recognition},
-  year={2025}
-}
-```
-
 ## License
 
 MIT
