@@ -36,50 +36,7 @@ pip install torch torch-geometric torchdiffeq
 - torchdiffeq
 - numpy, pandas, scikit-learn
 
-## Quick Start
 
-```python
-import pandas as pd
-from graph_flow_matching.baselines.base import ColumnSpec
-from graph_flow_matching.models.velocity_field import GAFMConfig
-from graph_flow_matching.training.trainer import GAFMTrainer
-from graph_flow_matching.training.sampler import GAFMSampler
-
-# Define column types
-columns = [
-    ColumnSpec("age", "continuous"),
-    ColumnSpec("income", "continuous"),
-    ColumnSpec("education", "ordinal", ("high_school", "bachelors", "masters", "phd")),
-    ColumnSpec("occupation", "categorical", ("engineer", "doctor", "teacher", "other")),
-]
-
-# Load your data
-df = pd.read_csv("your_data.csv")
-
-# Train
-config = GAFMConfig(hidden_dim=256, num_epochs=200, batch_size=256)
-trainer = GAFMTrainer(columns, config, device="cuda")
-model = trainer.fit(df)
-
-# Generate synthetic data
-sampler = GAFMSampler(model, trainer.preprocessor, config, device="cuda")
-synthetic_df = sampler.sample(n=1000)
-```
-
-## Using the Baseline Registry
-
-GAFM includes unified wrappers for 9 baseline methods:
-
-```python
-from graph_flow_matching.baselines.registry import create
-
-# Create any baseline with a unified interface
-gen = create("gafm", config=config, device="cuda")
-gen.fit(df, columns)
-synthetic = gen.sample(1000)
-```
-
-Available baselines: `gafm`, `ctgan`, `ttvae`, `great`, `tabula`, `forest_flow`, `tabddpm`, `tabsyn`, `tabbyflow`, `product_fm`
 
 ## Package Structure
 
